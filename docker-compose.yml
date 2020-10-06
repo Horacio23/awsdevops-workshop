@@ -1,0 +1,13 @@
+version: '3'
+
+# all of our services
+services: 
+    api:
+        build: 
+            context: ./images
+            dockerfile: ApiDevDockerfile
+        volumes: 
+            - ./api:/usr/src/api:cached
+        ports:
+            - 3001:3000
+        command: yarn start

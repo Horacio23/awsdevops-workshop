@@ -1,0 +1,16 @@
+FROM node:10.16.0-alpine
+
+#Needed for the loopback-cli
+RUN apk --no-cache update && \
+    apk --no-cache add python make g++
+
+# Used so we are not root user, this is a special user that comes with the node image
+USER node
+
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+
+ENV PATH=$PATH:/home/node/.npm-global/bin
+
+RUN yarn global add loopback-cli nodemon
+
+WORKDIR /usr/src/api
